@@ -60,6 +60,10 @@ location.x += velocity.x; location.y += velocity.y;
   {
   image(super_shep_dart,0,0);
   }
+  if(type == "gun_shep_dart")
+  {
+  image(gun_shep_dart,0,0);
+  }
   pop();
 
 
