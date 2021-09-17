@@ -10,6 +10,8 @@ PImage SpearShep;
 PImage SigmaShep;
 float angle;
 float timer;
+PVector DistRange;
+PVector mouse;
 ArrayList<Projectile> projectiles;
 
 
@@ -117,9 +119,17 @@ void loop(ArrayList<Sommerfugl> list){
   }
   
   }
+      mouse = new PVector(mouseX,mouseY);
+      DistRange = mouse.sub(location);
 push();
+
 imageMode(CENTER);
   translate(location.x,location.y);
+        if(DistRange.mag() < 30){
+      noStroke();
+      fill(100,100,100,101);
+      circle(0,0,DetectionRange*2);
+    } 
   rotate(angle);
 switch(shep){
   case "SalivaShep":
