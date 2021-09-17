@@ -10,10 +10,11 @@ int lives;
 float speed;
 float speedFactor;
 
-
+boolean hasReachedEnd;
 
 Sommerfugl(int live)
 {
+  hasReachedEnd = false;
   speedFactor = 3;
   pathIndex = 0;
   lives = live;
@@ -74,6 +75,8 @@ void loop()
     {
       //ved enden af banen
       return;
+      
+      
     }
   
   PVector dir = PVector.sub(path[pathIndex + 1],path[pathIndex]);
