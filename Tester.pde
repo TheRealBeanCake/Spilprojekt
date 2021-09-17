@@ -9,12 +9,15 @@ ArrayList<ElectricShepPlus> electricShepPlusList = new ArrayList<ElectricShepPlu
 int totalCash = 0;
 int totalLives = 100;
 int queueNumber = 0;
+boolean SoundMute = true;
+boolean MusicMute = false;
  
  import processing.sound.*;
  SoundFile CoolThing;
  SoundFile Chill;
  SoundFile Rich;
  SoundFile FirstBeat;
+ SoundFile HitPop;
   
   void settings(){
       size(1500, 927);}
@@ -24,13 +27,14 @@ void setup()
   Chill = new SoundFile(this,"Chill(Beat).wav");
   Rich = new SoundFile(this,"Rich(Beat).wav");
   FirstBeat = new SoundFile(this,"FirstBeat(Beat).wav");
+  HitPop = new SoundFile(this,"HitSound.wav");
   
   supportSheps.add(new SupportShep(new PVector(250, 500), 500, 1, 100));
   moneyFarms.add(new MoneyFarm(new PVector(400, 200)));
 electricShepMinusList.add(new ElectricShepMinus(new PVector(800, 125)));
 electricShepPlusList.add(new ElectricShepPlus(new PVector(800, 225)));
 spikeSheps.add(new SpikeShep(new PVector(400, 300), 100, 1));
-throwingSheps.add(new Throwing_shep("SpearShep", 200, 500, 2, 50));
+throwingSheps.add(new Throwing_shep("SpearShep", 200, 500, 100, 50));
 
 
  for(int i = 0; i < supportSheps.size(); i++)
@@ -70,6 +74,7 @@ void draw()
 {
   
 // Musik sergment starter her
+if(MusicMute == false){
   if(CoolThing.isPlaying() == false && queueNumber == 0){
     FirstBeat.play();
     queueNumber += 1;
@@ -86,6 +91,7 @@ void draw()
     CoolThing.play();
     queueNumber -=3;
   }
+}
   
 // Musik sergment slutter her 
   
