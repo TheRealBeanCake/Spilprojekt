@@ -1,102 +1,52 @@
-
-ArrayList<Projectile> projectiles = new ArrayList();
-ArrayList<Throwing_shep> ThrowingSheps = new ArrayList(); 
-
-PImage background_;
-
-PImage dart, super_shep_dart, spear_shep_dart, gun_shep_dart;
-
-
-
-
+ArrayList<Sommerfugl> testList = new ArrayList<Sommerfugl>();
+ MoneyFarm farm = new MoneyFarm(new PVector(400, 200));
+  SpikeShep s = new SpikeShep(new PVector(400, 300), 100, 1);
+ SupportShep z = new SupportShep(new PVector(600, 125));
+ ElectricShepMinus k = new ElectricShepMinus(new PVector(800, 125));
+  ElectricShepPlus u = new ElectricShepPlus(new PVector(800, 225));
+  Throwing_shep testShep = new Throwing_shep("SpearShep", 200, 500, 5, 50);
+  Throwing_shep testShep1 = new Throwing_shep("SalivaShep", 400, 500, 30, 1000);
+  
 void setup()
 {
- size(1500,927);
- dart = loadImage("DART.png"); super_shep_dart = loadImage("SUPER SHEP DART.png"); spear_shep_dart = loadImage("SPEAR SHEP DART.png"); gun_shep_dart = loadImage("GUN SHEP DART.png");
- background_ = loadImage("background.png");
-   
- image(background_,0,0);
- frameRate(30);
- 
- 
- ThrowingSheps.add(new Throwing_shep("SalivaShep",20,20,0,0));
- ThrowingSheps.add(new Throwing_shep("SigmaShep",500,500,0,0));
- ThrowingSheps.add(new Throwing_shep("SpearShep",700,700,0,0));
- 
- 
-}
+  size(1500, 927);
+  
 
+ farm.setup();
+ s.setup();
+ z.setup();
+ k.setup();
+ u.setup();
+ testShep.setup();
+ testShep1.setup();
+}
 
 void draw()
 {
   
-  /*
-  dart_vel.x = mouseX-dart_loc.x; dart_vel.y = mouseY-dart_loc.y;
-  dart_vel.normalize();
-  dart_vel.x *= 10; dart_vel.y *= 10;
-  */
+ clear();
+ 
+ imageMode(CORNER);
+ image(loadImage("background.png"), 0, 0);
   
-  
-  
-  image(background_,0,0);
-  
-  for(int i = 0; i < projectiles.size(); i++)
+  for(int i = 0; i < testList.size(); i++)
   {
-    projectiles.get(i).Display();
+   testList.get(i).loop(); 
   }
   
   
-  
-  
-  for(int i = 0; i < ThrowingSheps.size(); i++){
-    ThrowingSheps.get(i).setup();
-    }
-  for(int i = 0; i < ThrowingSheps.size();i++){
-    ThrowingSheps.get(i).loop();
-  }
-  
+  farm.loop();
+   s.loop(testList);
+   z.loop();
+  k.loop();
+ u.loop();
+ testShep.loop(testList);
+ testShep1.loop(testList);
 }
-
 
 void mousePressed()
 {
-
-  println(projectiles.size());
-  
-  
-  for(int i = 0; i < ThrowingSheps.size(); i++)
-  {
-    String type = ThrowingSheps.get(i).shep;
-    PVector shep_loc = ThrowingSheps.get(i).location;
-    
-    if(type == "SalivaShep")
-    {
-      projectiles.add(new Projectile("dart",shep_loc.x,shep_loc.y,mouseX,mouseY, 10));
-    }
-    if(type == "SuperShep")
-    {
-      projectiles.add(new Projectile("super_shep_dart",shep_loc.x,shep_loc.y,mouseX,mouseY, 10));
-    }
-    if(type == "GunShep")
-    {
-      projectiles.add(new Projectile("gun_shep_dart",shep_loc.x,shep_loc.y,mouseX,mouseY, 10));
-    }
-    if(type == "SpearShep")
-    {
-      projectiles.add(new Projectile("spear_shep_dart",shep_loc.x,shep_loc.y,mouseX,mouseY, 10));
-    }
-    
-  }
-
-
-}
-
-
-void keyPressed()
-{
-  float a = random(height);
-  float b = random(width);
-  
-  ThrowingSheps.add(new Throwing_shep("SalivaShep",b,a,0,0));
-  
+  Sommerfugl LOL = new Sommerfugl((int)random(10));
+  LOL.setup();
+  testList.add(LOL);
 }
