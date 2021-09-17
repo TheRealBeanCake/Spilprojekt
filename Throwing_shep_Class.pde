@@ -123,7 +123,7 @@ void loop(ArrayList<Sommerfugl> list, ArrayList<SupportShep> supports){
     
     if(shep == "SalivaShep")
     {
-      Projectile temp = new Projectile("dart",location.x,location.y,target.x,target.y, 30, 1);
+      Projectile temp = new Projectile("dart",location.x,location.y,target.x,target.y, 30, 1, 0.5);
       temp.setup();
       projectiles.add(temp);
       
@@ -131,19 +131,19 @@ void loop(ArrayList<Sommerfugl> list, ArrayList<SupportShep> supports){
     }
     if(shep == "SuperShep")
     {
-      Projectile temp = new Projectile("super_shep_dart",location.x,location.y,target.x,target.y,30, 1);
+      Projectile temp = new Projectile("super_shep_dart",location.x,location.y,target.x,target.y,30, 1, 3);
       temp.setup();
       projectiles.add(temp);
     }
     if(shep == "GunShep")
     {
-      Projectile temp = new Projectile("gun_shep_dart",location.x,location.y,target.x,target.y, 30, 1);
+      Projectile temp = new Projectile("gun_shep_dart",location.x,location.y,target.x,target.y, 30, 1, 1.5);
       temp.setup();
       projectiles.add(temp);
     }
     if(shep == "SpearShep")
     {
-      Projectile temp = new Projectile("spear_shep_dart",location.x,location.y,target.x,target.y, 30, 5);
+      Projectile temp = new Projectile("spear_shep_dart",location.x,location.y,target.x,target.y, 30, 1, 3);
       temp.setup();
       projectiles.add(temp);
     }
