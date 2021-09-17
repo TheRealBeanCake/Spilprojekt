@@ -1,13 +1,20 @@
 class SupportShep
 {
  
+  
   PVector location;
   PImage supportShepImage;
   
-  SupportShep(PVector position)
+  float range;
+  float attackSpeedBuff;
+  float rangeBuff;
+  
+  SupportShep(PVector position, float range, float attackSpeedBuff, float rangeBuff)
   {
     location = position;
-    
+    this.range = range;
+    this.attackSpeedBuff = attackSpeedBuff;
+    this.rangeBuff = rangeBuff;
     
     
     
@@ -29,11 +36,6 @@ class SupportShep
     //CHeck om der er andre SHEP i nærheden
   }
   
-  void DoHealing()
-  {
-    
-    //lav på et tidspunkt
-  }
   
   
 }
