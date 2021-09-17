@@ -10,6 +10,8 @@ int lives;
 float speed;
 float speedFactor;
 
+
+
 Sommerfugl(int live)
 {
   speedFactor = 3;
@@ -49,6 +51,16 @@ void loop()
     dead = true;
     return;
   }
+  
+  if(pathIndex + 1 >= path.length)
+    {
+      //ved enden af banen
+      return;
+    }
+  
+  PVector dir = PVector.sub(path[pathIndex + 1],path[pathIndex]);
+  
+  push();
   
   switch(lives)
   {
@@ -96,17 +108,14 @@ void loop()
   }
   imageMode(CORNER);
   
+  pop();
   
   //Bevægelse
   
   
-  if(pathIndex + 1 >= path.length)
-    {
-      
-      return;
-    }
   
-  PVector dir = PVector.sub(path[pathIndex + 1],path[pathIndex]);
+  
+  
   PVector transformation = new PVector(dir.normalize().x * speed * speedFactor, dir.normalize().y * speed * speedFactor);
   
   PVector newLocation = PVector.add(location,transformation);
@@ -116,7 +125,7 @@ void loop()
     // new path
 
     
-    lives -= 1;
+    
     pathIndex += 1;
     location = path[pathIndex];
     
@@ -125,6 +134,7 @@ void loop()
   {
     location = newLocation;
   }
+  
   
   
 }
