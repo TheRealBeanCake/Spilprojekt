@@ -125,7 +125,7 @@ float timeAlive;
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 10 && list.get(i).lives > 0)
+      if(dist < 30 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
@@ -148,7 +148,7 @@ float timeAlive;
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 10 && list.get(i).lives > 0)
+      if(dist < 30 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
