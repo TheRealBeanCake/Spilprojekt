@@ -1,7 +1,12 @@
 class Throwing_shep {
 PVector location;
+
 float FireRate;
 float DetectionRange;
+
+float tempFireRate;
+float tempDetectionRange;
+
 String shep;
 PImage SalivaShep;
 PImage SuperShep;
@@ -14,8 +19,6 @@ PVector DistRange;
 PVector mouse;
 ArrayList<Projectile> projectiles;
 
-
-
 Throwing_shep (String s, float locX, float locY, float FR, float DecR){
 
   projectiles = new ArrayList<Projectile>();
@@ -23,6 +26,10 @@ Throwing_shep (String s, float locX, float locY, float FR, float DecR){
   location = new PVector(locX,locY);
 FireRate = FR;
 DetectionRange = DecR;
+
+tempFireRate = FR;
+tempDetectionRange = DecR;
+
 shep = s;
 
 }
@@ -34,7 +41,32 @@ void setup() {
   SpearShep = loadImage("SPEAR SHEP.png");
   SigmaShep = loadImage("SIGMA SHEP.png");
 }
-void loop(ArrayList<Sommerfugl> list){ 
+void loop(ArrayList<Sommerfugl> list, ArrayList<SupportShep> supports){ 
+  
+  FireRate = tempFireRate;
+  DetectionRange = tempDetectionRange;
+  
+  for(int i = 0; i < supports.size(); i++)
+  {
+   PVector temp = PVector.sub(location, supports.get(i).location);
+    float dist = sqrt(temp.x*temp.x+temp.y*temp.y);
+    
+    if(dist < supports.get(i).range)
+    {
+     
+      //GET BUFFS (ATTACKSPEEDBUFF ATTACKRANGBUFF)
+     
+     FireRate = tempFireRate + supports.get(i).attackSpeedBuff;
+     DetectionRange = tempDetectionRange + supports.get(i).rangeBuff;
+     
+
+
+      break;
+      
+    }
+    
+  }
+  
   
   ArrayList<Sommerfugl> L = new ArrayList<Sommerfugl>();
   
