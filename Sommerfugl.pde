@@ -38,17 +38,35 @@ void setup()
 
 // 1 : but red, 2 : but blue, 3 : but cyan, 4 : but green, 5 : but orange, 6 : but pink, 7 : but yellow, 8-10, but rainbow
 
+boolean IsDead()
+{
+  if(lives <= 0)
+  {
+    //død
+
+    return true;
+  }
+  
+  if(pathIndex + 1 >= path.length)
+    {
+      //ved enden af banen
+      return true;
+    }
+    
+    return false;
+}
+
 void loop()
 {
   //status
   
-  boolean dead = false;
+
   imageMode(CENTER);
   
   if(lives <= 0)
   {
     //død
-    dead = true;
+    
     return;
   }
   
