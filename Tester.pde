@@ -5,13 +5,12 @@ ArrayList<SupportShep> supportSheps = new ArrayList<SupportShep>();
 ArrayList<MoneyFarm> moneyFarms = new ArrayList<MoneyFarm>();
 ArrayList<ElectricShepMinus> electricShepMinusList = new ArrayList<ElectricShepMinus>();
 ArrayList<ElectricShepPlus> electricShepPlusList = new ArrayList<ElectricShepPlus>();
-ArrayList<ShepButton> shepButtons = new ArrayList<ShepButton>();
   
 int totalCash = 0;
 int totalLives = 100;
 int queueNumber = 0;
 boolean SoundMute = true;
-boolean MusicMute = true;
+boolean MusicMute = false;
  
  import processing.sound.*;
  SoundFile CoolThing;
@@ -29,16 +28,6 @@ void setup()
   Rich = new SoundFile(this,"Rich(Beat).wav");
   FirstBeat = new SoundFile(this,"FirstBeat(Beat).wav");
   HitPop = new SoundFile(this,"HitSound.wav");
-  
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424,80), 300, "sigma shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 180), 100, "super shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424,280), 300, "sigma shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 380), 100, "super shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424,480), 300, "sigma shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 575), 100, "super shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424,665), 300, "sigma shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 765), 100, "super shep"));
-shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 860), 100, "super shep"));
   
   supportSheps.add(new SupportShep(new PVector(250, 500), 500, 1, 100));
   moneyFarms.add(new MoneyFarm(new PVector(400, 200)));
@@ -83,26 +72,32 @@ throwingSheps.add(new Throwing_shep("SpearShep", 200, 500, 100, 50));
 
 void draw()
 {
-  
+  println(MusicMute);
 // Musik sergment starter her
+if(FirstBeat.isPlaying() == true && MusicMute == true){FirstBeat.stop();}
+if(Rich.isPlaying() == true && MusicMute == true){Rich.stop();}
+if(Chill.isPlaying() == true && MusicMute == true){Chill.stop();}
+if(CoolThing.isPlaying() == true && MusicMute == true){CoolThing.stop();}
+
 if(MusicMute == false){
   if(CoolThing.isPlaying() == false && queueNumber == 0){
     FirstBeat.play();
     queueNumber += 1;
-  }
+  } 
   if(FirstBeat.isPlaying() == false && queueNumber == 1){
     Rich.play();
     queueNumber += 1;
-  }
+  } 
   if(Rich.isPlaying() == false && queueNumber == 2){
     Chill.play();
     queueNumber += 1;
-  }  
+  } 
   if(Chill.isPlaying() == false && queueNumber == 3){
     CoolThing.play();
     queueNumber -=3;
-  }
+  } 
 }
+
   
 // Musik sergment slutter her 
   
@@ -181,11 +176,6 @@ if(MusicMute == false){
  for(int i = 0; i < throwingSheps.size(); i++)
  {
   throwingSheps.get(i).loop(sommerfuglList, supportSheps); 
- }
- 
- for(int i = 0; i < shepButtons.size(); i++)
- {
-  totalCash = shepButtons.get(i).loop(totalCash); 
  }
  
 }
