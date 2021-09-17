@@ -88,6 +88,8 @@ float timeAlive;
       if(dist < 50 && list.get(i).lives > 0)
       {
        //COLLISION
+       if(SoundMute == false){
+       HitPop.play(); }
        list.get(i).lives -= 1;
        lives -= 1;
        hit.add(list.get(i));
@@ -108,6 +110,8 @@ float timeAlive;
       if(dist < 50 && list.get(i).lives > 0)
       {
        //COLLISION
+       if(SoundMute == false){
+       HitPop.play(); }
        list.get(i).lives -= 1;
        lives -= 1;
        hit.add(list.get(i));
@@ -128,6 +132,8 @@ float timeAlive;
       if(dist < 30 && list.get(i).lives > 0)
       {
        //COLLISION
+       if(SoundMute == false){
+       HitPop.play(); }
        list.get(i).lives -= 1;
        lives -= 1;
        hit.add(list.get(i));
@@ -151,6 +157,8 @@ float timeAlive;
       if(dist < 30 && list.get(i).lives > 0)
       {
        //COLLISION
+       if(SoundMute == false){
+       HitPop.play(); }
        list.get(i).lives -= 1;
        lives -= 1;
        hit.add(list.get(i));
