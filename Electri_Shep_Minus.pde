@@ -22,20 +22,20 @@ class ElectricShepMinus
   
 }
   
-  void loop(PVector location_plus, PVector[] sommerfugle, ArrayList<Sommerfugl> list)
+  void loop(PVector location_plus, ArrayList<Sommerfugl> list)
   {
     imageMode(CENTER);
     image(electricShepMinusImage, location.x, location.y);
     imageMode(CORNER);
     
     //CHeck om der er electric shep positive i nærheden
-          for(int i = 0; i < sommerfugle.length; i++)
+      for(int i = 0; i < list.size(); i++)
       {
        
        PVector v1 = new PVector((location.x-location_plus.x), ((height-location.y)-(height-location_plus.y)));
        PVector v1_ = v1;
        
-       PVector v2 = new PVector((location.x-sommerfugle[i].x), ((height-location.y)-(height-sommerfugle[i].y)));
+       PVector v2 = new PVector((location.x-list.get(i).location.x), ((height-location.y)-(height-list.get(i).location.y)));
        PVector v2_ = v2;
 
        float v1l = v1_.mag();  
@@ -54,7 +54,7 @@ class ElectricShepMinus
        {
          push();
          stroke(4,217,255);
-         strokeWeight(7);
+         strokeWeight(20);
          line(location.x, location.y, location_plus.x, location_plus.y);
          pop();
          list.get(i).lives -= 1;
@@ -63,10 +63,6 @@ class ElectricShepMinus
        }
        
         
-    if(frameCount % 60 == 0)
-    {
-      
-      }
 
       
       
