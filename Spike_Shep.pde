@@ -1,6 +1,9 @@
 class SpikeShep
 {
  
+  PVector mouse;
+  PVector DistRange;
+  
   PVector location;
   PImage spikeShepImage;
   
@@ -40,7 +43,18 @@ class SpikeShep
       
       
     }
-    
+       // Viser radiussen af spikeshep
+       push();
+          mouse = new PVector(mouseX,mouseY);  
+            DistRange = mouse.sub(location);
+
+    translate(location.x,location.y);
+            if(DistRange.mag() < 30){
+      noStroke();
+      fill(100,100,100,101);
+      circle(0,0,radius*2);
+    } 
+      pop();
     
     
     imageMode(CENTER);
@@ -89,7 +103,7 @@ class SpikeShep
       angle += PI/4;
       
     }
-    
+        
     //lav på et tidspunkt
   }
   
