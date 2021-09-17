@@ -77,7 +77,7 @@ class Projectile
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 50)
+      if(dist < 50 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
@@ -97,7 +97,7 @@ class Projectile
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 50)
+      if(dist < 50 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
@@ -117,7 +117,7 @@ class Projectile
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 10)
+      if(dist < 10 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
@@ -140,7 +140,7 @@ class Projectile
      
       float dist  = sqrt(temp.x*temp.x+temp.y*temp.y);
       
-      if(dist < 10)
+      if(dist < 10 && list.get(i).lives > 0)
       {
        //COLLISION
        list.get(i).lives -= 1;
