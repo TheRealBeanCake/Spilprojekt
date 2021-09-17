@@ -1,4 +1,3 @@
-
 class MoneyFarm
 {
   PVector location;
@@ -23,15 +22,36 @@ class MoneyFarm
   }
   
   
-  int loop(int money)
+  int loop(int money, ArrayList<SupportShep> supports)
   {
     push();
     imageMode(CENTER);
     image(moneyFarmImage, location.x, location.y);
     pop();
     
+    float r = 1;
     
-    if(frameCount % 60 == 0)
+    for(int i = 0; i < supports.size(); i++)
+  {
+   PVector temp = PVector.sub(location, supports.get(i).location);
+    float dist = sqrt(temp.x*temp.x+temp.y*temp.y);
+    
+    if(dist < supports.get(i).range)
+    {
+     
+      //GET BUFFS (ATTACKSPEEDBUFF ATTACKRANGBUFF)
+
+     r = 1 + supports.get(i).rangeBuff;
+     
+
+
+      break;
+      
+    }
+    
+  }
+    
+    if(frameCount % (60 / r) == 0)
     {
       money += 20;
       count = 30;
