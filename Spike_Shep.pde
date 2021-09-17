@@ -10,6 +10,9 @@ class SpikeShep
   float radius;
   float speed;
   
+  float tempSpeed;
+  float tempRadius;
+  
   float time;
   
   ArrayList<Projectile> projectiles;
@@ -23,6 +26,9 @@ class SpikeShep
     this.radius = radius;
     this.speed = speed;
     
+    tempRadius = radius;
+    tempSpeed = speed;
+    
   }
   
   void setup()
@@ -32,8 +38,33 @@ class SpikeShep
   
 }
   
-  void loop(ArrayList<Sommerfugl> list)
+  void loop(ArrayList<Sommerfugl> list, ArrayList<SupportShep> supports)
   {
+    speed = tempSpeed;
+  radius = tempRadius;
+  
+  for(int i = 0; i < supports.size(); i++)
+  {
+   PVector temp = PVector.sub(location, supports.get(i).location);
+    float dist = sqrt(temp.x*temp.x+temp.y*temp.y);
+    
+    if(dist < supports.get(i).range)
+    {
+     
+      //GET BUFFS (ATTACKSPEEDBUFF ATTACKRANGBUFF)
+     
+     speed = tempSpeed + supports.get(i).attackSpeedBuff;
+     radius = tempRadius + supports.get(i).rangeBuff;
+     
+
+
+      break;
+      
+    }
+    
+  }
+    
+    
     time += 1 / (float)30;
  
     for(int i = 0; i < projectiles.size(); i++)
@@ -77,7 +108,7 @@ class SpikeShep
       
       if(dist < radius)
       {
-        println("SHOTT");
+        
         time = 0;
         ThrowSpikes();
       }
@@ -94,7 +125,7 @@ class SpikeShep
     
     for(int i = 0; i < 8; i++)
     {
-      Projectile temp = new Projectile("dart",location.x, location.y, cos(angle) * k + location.x, sin(angle) * k + location.y, 20, 1); 
+      Projectile temp = new Projectile("dart",location.x, location.y, cos(angle) * k + location.x, sin(angle) * k + location.y, 20, 1, 0.2); 
       
       temp.setup();
       projectiles.add(temp);
