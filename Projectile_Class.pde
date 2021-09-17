@@ -14,9 +14,11 @@ class Projectile
  
  ArrayList<Sommerfugl> hit;
  
+float timer;
 
+float timeAlive;
  
- Projectile(String s, float x_, float y_, float mx, float my, float vel, int live)
+ Projectile(String s, float x_, float y_, float mx, float my, float vel, int live, float timeAlive)
  {
   hit = new ArrayList<Sommerfugl>();
    dead = false;
@@ -28,7 +30,7 @@ class Projectile
    
    lives = live;
    
-   
+   this.timeAlive = timeAlive;
    
  }
  
@@ -48,6 +50,12 @@ class Projectile
     return; 
    }
    
+   timer += 1 / (float)30;
+   
+   if(timer > timeAlive)
+   {
+    dead = true; 
+   }
    
    location.x += velocity.x; location.y += velocity.y;
 
