@@ -8,13 +8,22 @@ ArrayList<ElectricShepPlus> electricShepPlusList = new ArrayList<ElectricShepPlu
   
 int totalCash = 0;
 int totalLives = 100;
+int queueNumber = 0;
+ 
+ import processing.sound.*;
+ SoundFile CoolThing;
+ SoundFile Chill;
+ SoundFile Rich;
+ SoundFile FirstBeat;
   
+  void settings(){
+      size(1500, 927);}
 void setup()
 {
-  size(1500, 927);
-  
-  
-  
+  CoolThing = new SoundFile(this,"CoolThing(Beat).wav");
+  Chill = new SoundFile(this,"Chill(Beat).wav");
+  Rich = new SoundFile(this,"Rich(Beat).wav");
+  FirstBeat = new SoundFile(this,"FirstBeat(Beat).wav");
   
   supportSheps.add(new SupportShep(new PVector(250, 500), 500, 1, 100));
   moneyFarms.add(new MoneyFarm(new PVector(400, 200)));
@@ -22,8 +31,6 @@ electricShepMinusList.add(new ElectricShepMinus(new PVector(800, 125)));
 electricShepPlusList.add(new ElectricShepPlus(new PVector(800, 225)));
 spikeSheps.add(new SpikeShep(new PVector(400, 300), 100, 1));
 throwingSheps.add(new Throwing_shep("SpearShep", 200, 500, 2, 50));
-
-
 
 
  for(int i = 0; i < supportSheps.size(); i++)
@@ -62,6 +69,26 @@ throwingSheps.add(new Throwing_shep("SpearShep", 200, 500, 2, 50));
 void draw()
 {
   
+// Musik sergment starter her
+  if(CoolThing.isPlaying() == false && queueNumber == 0){
+    FirstBeat.play();
+    queueNumber += 1;
+  }
+  if(FirstBeat.isPlaying() == false && queueNumber == 1){
+    Rich.play();
+    queueNumber += 1;
+  }
+  if(Rich.isPlaying() == false && queueNumber == 2){
+    Chill.play();
+    queueNumber += 1;
+  }  
+  if(Chill.isPlaying() == false && queueNumber == 3){
+    CoolThing.play();
+    queueNumber -=3;
+  }
+  
+// Musik sergment slutter her 
+  
   for(int i = 0; i < sommerfuglList.size(); i++)
   {
     if(sommerfuglList.get(i).IsDead() == true)
@@ -82,7 +109,7 @@ void draw()
  clear();
  
  imageMode(CORNER);
- image(loadImage("background3.png"), 0, 0);
+ image(loadImage("background.png"), 0, 0);
   
   int digits = str(totalCash).length();
   int k = 25;
