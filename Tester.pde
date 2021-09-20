@@ -292,4 +292,6 @@ void mousePressed()
   Sommerfugl LOL = new Sommerfugl((int)random(10));
   LOL.setup();
   sommerfuglList.add(LOL);
+  
+  MusicOn = aids.check();
 }
