@@ -7,12 +7,13 @@ ArrayList<ElectricShepMinus> electricShepMinusList = new ArrayList<ElectricShepM
 ArrayList<ElectricShepPlus> electricShepPlusList = new ArrayList<ElectricShepPlus>();
 ArrayList<ShepButton> shepButtons = new ArrayList<ShepButton>();
   
-Extra_Button aids = new Extra_Button("MusicButton", new PVector(500,500), new PVector(50,50));
+Extra_Button aids = new Extra_Button("MusicButton", new PVector(1130,820), new PVector(50,50));
+Extra_Button sound = new Extra_Button("SoundButton", new PVector(1200,820), new PVector(50,50));
 
 int totalCash = 1000;
 int totalLives = 100;
 int queueNumber = 0;
-boolean SoundMute = true;
+boolean SoundOn = false;
 boolean MusicOn = true;
  
 boolean currentlyGrapping = false;
@@ -84,6 +85,7 @@ shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 860), 100,
   throwingSheps.get(i).setup(); 
  }
  aids.setup();
+ sound.setup();
  
 }
 
@@ -285,6 +287,7 @@ if(MusicOn == true){
  
  currentlyGrapping = c;
   aids.loop();
+  sound.loop();
 }
 
 void mousePressed()
@@ -294,4 +297,5 @@ void mousePressed()
   sommerfuglList.add(LOL);
   
   MusicOn = aids.check();
+  SoundOn = sound.check();
 }
