@@ -7,11 +7,13 @@ ArrayList<ElectricShepMinus> electricShepMinusList = new ArrayList<ElectricShepM
 ArrayList<ElectricShepPlus> electricShepPlusList = new ArrayList<ElectricShepPlus>();
 ArrayList<ShepButton> shepButtons = new ArrayList<ShepButton>();
   
+Extra_Button aids = new Extra_Button("MusicButton", new PVector(500,500), new PVector(50,50));
+
 int totalCash = 1000;
 int totalLives = 100;
 int queueNumber = 0;
 boolean SoundMute = true;
-boolean MusicMute = true;
+boolean MusicOn = true;
  
 boolean currentlyGrapping = false;
  
@@ -81,7 +83,7 @@ shepButtons.add(new ShepButton(new PVector(155,90), new PVector(1424, 860), 100,
  {
   throwingSheps.get(i).setup(); 
  }
- 
+ aids.setup();
  
 }
 
@@ -89,12 +91,12 @@ void draw()
 {
   
 // Musik sergment starter her
-if(FirstBeat.isPlaying() == true && MusicMute == true){FirstBeat.stop();}
-if(Rich.isPlaying() == true && MusicMute == true){Rich.stop();}
-if(Chill.isPlaying() == true && MusicMute == true){Chill.stop();}
-if(CoolThing.isPlaying() == true && MusicMute == true){CoolThing.stop();}
+if(FirstBeat.isPlaying() == true && MusicOn == false){FirstBeat.stop();}
+if(Rich.isPlaying() == true && MusicOn == false){Rich.stop();}
+if(Chill.isPlaying() == true && MusicOn == false){Chill.stop();}
+if(CoolThing.isPlaying() == true && MusicOn == false){CoolThing.stop();}
 
-if(MusicMute == false){
+if(MusicOn == true){
   if(CoolThing.isPlaying() == false && queueNumber == 0){
     FirstBeat.play();
     queueNumber += 1;
@@ -110,9 +112,8 @@ if(MusicMute == false){
   if(Chill.isPlaying() == false && queueNumber == 3){
     CoolThing.play();
     queueNumber -=3;
-  } 
+  }
 }
-
   
 // Musik sergment slutter her 
   
@@ -283,7 +284,7 @@ if(MusicMute == false){
  }
  
  currentlyGrapping = c;
- 
+  aids.loop();
 }
 
 void mousePressed()
